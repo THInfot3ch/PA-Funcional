@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Gasto Calórico e Avaliação PAR-Q</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 3px solid #d6181f;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(214, 24, 31, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
+            margin-bottom: 30px;
+        }
+        h1, h3 {
+            text-align: center;
+            color: #d6181f;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+        input, select, button {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #d6181f;
+            border-radius: 4px;
+            background-color: #222;
+            color: white;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #d6181f;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #a41417;
+        }
+        .result {
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #d6181f;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 4px;
+            text-align: center;
+            max-width: 500px;
+        }
+        .result.green {
+            color: #28a745;
+        }
+        .result.red {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Gasto Calórico e Avaliação PAR-Q</h1>
+
+    <!-- Calculadora de Gasto Calórico -->
+    <div class="container">
+        <h3>Calculadora de Gasto Calórico</h3>
+        <form id="calorie-form">
+            <label>Sexo:</label>
+            <select id="sexo">
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+            </select>
+            <label>Idade (anos):</label>
+            <input type="number" id="idade" placeholder="Ex: 25" min="0">
+            <label>Peso (kg):</label>
+            <input type="number" id="peso" placeholder="Ex: 70" min="0">
+            <label>Altura (cm):</label>
+            <input type="number" id="altura" placeholder="Ex: 175" min="0">
+            <label>Nível de Atividade Física:</label>
+            <select id="atividade">
+                <option value="1.2">Sedentário</option>
+                <option value="1.375">Pouca atividade</option>
+                <option value="1.55">Atividade moderada</option>
+                <option value="1.725">Atividade intensa</option>
+                <option value="1.9">Atividade muito intensa</option>
+            </select>
+            <button type="button" onclick="calcularGastoCalorico()">Calcular!</button>
+        </form>
+        <div class="result" id="calorie-result"></div>
+    </div>
+
+    <!-- Formulário PAR-Q -->
+    <div class="container">
+        <h3>Formulário PAR-Q</h3>
+        <form id="parq-form">
+            <label>1. Alguma vez o médico disse que você tem um problema no coração?</label>
+            <select id="parq1">
+                <option value="não">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+            <label>2. Sente dor no peito quando pratica atividade física?</label>
+            <select id="parq2">
+                <option value="não">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+            <label>3. Teve dor no peito no último mês sem atividade física?</label>
+            <select id="parq3">
+                <option value="não">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+            <label>4. Perde o equilíbrio devido à tontura?</label>
+            <select id="parq4">
+                <option value="não">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+            <label>5. Algum problema ósseo ou articular?</label>
+            <select id="parq5">
+                <option value="não">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+            <label>6. Alguma condição médica que impeça atividade física?</label>
+            <select id="parq6">
+                <option value="não">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+            <label>7. Toma algum remédio para pressão ou coração?</label>
+            <select id="parq7">
+                <option value="não">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+            <button type="button" onclick="avaliarParq()">Avaliar!</button>
+        </form>
+        <div class="result" id="parq-resultado"></div>
+    </div>
+
+    <script>
+        function calcularGastoCalorico() {
+            const sexo = document.getElementById('sexo').value;
+            const idade = parseInt(document.getElementById('idade').value);
+            const peso = parseFloat(document.getElementById('peso').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+            const atividade = parseFloat(document.getElementById('atividade').value);
+
+            if (isNaN(idade) || isNaN(peso) || isNaN(altura)) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            let tmb;
+            if (sexo === "masculino") {
+                tmb = 88.36 + (13.4 * peso) + (4.8 * altura) - (5.7 * idade);
+            } else {
+                tmb = 447.6 + (9.2 * peso) + (3.1 * altura) - (4.3 * idade);
+            }
+
+            const gastoCalorico = tmb * atividade;
+            const imc = peso / ((altura / 100) ** 2);
+            const pesoIdealMin = 18.5 * ((altura / 100) ** 2);
+            const pesoIdealMax = 24.9 * ((altura / 100) ** 2);
+
+            let classificacaoIMC;
+            let riscos = "";
+            if (imc < 18.5) {
+                classificacaoIMC = "Abaixo do peso";
+                riscos = "Riscos: Fadiga, baixa imunidade, problemas ósseos.";
+            } else if (imc < 24.9) {
+                classificacaoIMC = "Peso normal";
+                riscos = "Riscos: Baixo (nível saudável).";
+            } else if (imc < 29.9) {
+                classificacaoIMC = "Sobrepeso";
+                riscos = "Riscos: Aumento de pressão arterial, diabetes tipo 2.";
+            } else if (imc < 34.9) {
+                classificacaoIMC = "Obesidade Grau I";
+                riscos = "Riscos: Doenças cardiovasculares, apneia do sono.";
+            } else if (imc < 39.9) {
+                classificacaoIMC = "Obesidade Grau II";
+                riscos = "Riscos: Diabetes severo, problemas articulares.";
+            } else {
+                classificacaoIMC = "Obesidade Grau III";
+                riscos = "Riscos: Alto risco de doenças fatais.";
+            }
+
+            document.getElementById('calorie-result').innerHTML = `
+                <p><strong>Gasto Calórico Diário:</strong> ${gastoCalorico.toFixed(2)} kcal</p>
+                <p><strong>IMC:</strong> ${imc.toFixed(2)} (${classificacaoIMC})</p>
+                <p><strong>Peso Ideal:</strong> ${pesoIdealMin.toFixed(1)} kg - ${pesoIdealMax.toFixed(1)} kg</p>
+                <p><strong>${riscos}</strong></p>
+            `;
+        }
+
+        function avaliarParq() {
+            const respostas = [
+                document.getElementById('parq1').value,
+                document.getElementById('parq2').value,
+                document.getElementById('parq3').value,
+                document.getElementById('parq4').value,
+                document.getElementById('parq5').value,
+                document.getElementById('parq6').value,
+                document.getElementById('parq7').value
+            ];
+
+            const todosNao = respostas.every(resposta => resposta === "não");
+            const todosSim = respostas.every(resposta => resposta === "sim");
+
+            const resultado = document.getElementById('parq-resultado');
+            if (todosNao) {
+                resultado.innerHTML = "Você está <strong>Apto</strong> para atividades físicas!";
+                resultado.className = "result green";
+            } else if (todosSim) {
+                resultado.innerHTML = "Você <strong>NÃO está Apto</strong> para atividades físicas sem consultar um médico.";
+                resultado.className = "result red";
+            } else {
+                resultado.innerHTML = "Você <strong>NÃO está Apto</strong> para atividades físicas sem consultar um médico.";
+                resultado.className = "result red";
+            }
+        }
+    </script>
+     <div class="center">
+   <h3> 
+    <button>
+        <a href="index.html">Voltar</a>
+    </button>
+
+
+   </h4>
+</div>
+</body>
+</html>
