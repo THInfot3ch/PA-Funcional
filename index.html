@@ -6,55 +6,125 @@
     <title>PA Funcional</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="button.css">
+    <style>
+        /* Adicione estilos básicos responsivos aqui */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        nav ul li button {
+            background-color: #444;
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        nav ul li button:hover {
+            background-color: #555;
+        }
+
+        header .center, main .center {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            h2 {
+                font-size: 1.2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
    <nav>
-    <ul>
-        <li>
-           <button>
-            <a href="index.html">Sobre Mim</a>
-           </button>
-        </li>
-        <li>
-            <button>
-                <a href="Calculadora.html">Calculadora e PAR-Q</a>
-            </button>
-        </li>
-        <li> 
-            <button>
-            <a href="https://www.instagram.com/andre_storm17/">Instagram</a>
-            </button>
-        </li>
-    </ul>
+       <ul>
+           <li>
+               <button>
+                   <a href="index.html">Sobre Mim</a>
+               </button>
+           </li>
+           <li>
+               <button>
+                   <a href="Calculadora.html">Calculadora e PAR-Q</a>
+               </button>
+           </li>
+           <li> 
+               <button>
+                   <a href="https://www.instagram.com/andre_storm17/">Instagram</a>
+               </button>
+           </li>
+       </ul>
    </nav> 
    <header>
-    <div class="center">
-        <img src="./img/WhatsApp Image 2025-01-13 at 14.25.47.jpeg"><img>
-    </div>
-     
-    <div class="center">
-     <h1>Andre Chaves</h1>
-     <h2>Profissional de Educação Física</h2>
-    </div>
-    </header>
-    <main>
-      
-            <selection>
-                <div class="center" >
-                <h3> Sobre mim
-                    <p>
-                        
-                        Atleta de corrida da Appai /
-                        Personal Trainer /
-                        Téc.de enfermagem / 
-                        Pós graduado.
-                        
-                    </p>
-                </h3>
-                </div>
-            </selection>    
-        </div>
-        </main>
-
+       <div class="center">
+           <img src="./img/WhatsApp Image 2025-01-13 at 14.25.47.jpeg" alt="Foto de André Chaves">
+       </div>
+       <div class="center">
+           <h1>André Chaves</h1>
+           <h2>Profissional de Educação Física</h2>
+       </div>
+   </header>
+   <main>
+       <section>
+           <div class="center">
+               <h3>Sobre mim</h3>
+               <p>
+                   Atleta de corrida da Appai / Personal Trainer / Téc. de enfermagem / Pós-graduado.
+               </p>
+           </div>
+       </section>    
+   </main>
 </body>
 </html>
+
