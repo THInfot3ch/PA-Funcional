@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="button.css">
     <style>
-        /* Adicione estilos básicos responsivos aqui */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -48,18 +47,21 @@
             background-color: #555;
         }
 
-        header .center, main .center {
+        header .center {
             text-align: center;
             margin: 20px 0;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
+        header .center img {
+            width: 150px; /* Tamanho ajustado */
+            height: 150px; /* Tamanho ajustado */
+            border-radius: 50%; /* Formato redondo */
+            object-fit: cover; /* Ajusta o conteúdo para caber no círculo */
+            display: block;
+            margin: 0 auto; /* Centraliza a imagem */
+            border: 3px solid #333; /* Borda opcional */
         }
 
-        /* Estilos responsivos */
         @media (max-width: 768px) {
             nav ul {
                 flex-direction: column;
@@ -127,4 +129,3 @@
    </main>
 </body>
 </html>
-
